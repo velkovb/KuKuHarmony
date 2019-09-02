@@ -173,7 +173,7 @@ def mainChildPage() {
 
             if (selectedDevice) {
                 section("Device Type :") {
-                    def deviceType = ["Default", "Aircon", "TV", "Roboking", "Fan", "Fireplace"]
+                    def deviceType = ["Default", "Aircon2", "TV", "Roboking", "Fan", "Fireplace", "Aircon"]
                     input name: "selectedDeviceType", type: "enum", title: "Select Device Type", multiple: false, options: deviceType, submitOnChange: true, required: true                    
                 }
             }  
@@ -185,6 +185,9 @@ def mainChildPage() {
                 switch (selectedDeviceType) {
                     case "Aircon":
                     addAirconDevice()
+                    break
+                    case "Aircon2":
+                    addAircon2Device()
                     break
                     case "TV":
                     case "STB":
@@ -328,6 +331,37 @@ def addAirconDevice() {
 
 	monitorMenu() 
 }
+
+// Add device page for Aircon
+def addAirconDevice() {
+    def labelOfCommand = getLabelsOfCommands(atomicState.deviceCommands)
+    state.selectedCommands = [:]    
+
+    section("Commands :") {            
+        //input name: "selectedPowerToggle", type: "enum", title: "Power Toggle", options: labelOfCommand, submitOnChange: true, multiple: false, required: true
+        input name: "selectedPowerOn", type: "enum", title: "Power On", options: labelOfCommand, submitOnChange: true, multiple: false, required: true
+        input name: "selectedPowerOff", type: "enum", title: "Power Off", options: labelOfCommand, submitOnChange: true, multiple: false, required: true
+        input name: "selectedAuto21Down", type: "enum", title: "Auto21 Down", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
+        input name: "selectedAuto22Down", type: "enum", title: "Auto22 Down", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
+        input name: "selectedAuto23Up", type: "enum", title: "Auto23 Up", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+        input name: "selectedAuto24Up", type: "enum", title: "Auto24 Up", options: labelOfCommand, submitOnChange: true, multiple: false, required: false    
+        input name: "selectedLight", type: "enum", title: "Light", options: labelOfCommand, submitOnChange: true, multiple: false, required: false   
+        input name: "selectedPurify", type: "enum", title: "Purify", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+    }
+
+    //state.selectedCommands["power"] = selectedPowerToggle
+    state.selectedCommands["power-on"] = selectedPowerOn
+    state.selectedCommands["power-off"] = selectedPowerOff    
+    state.selectedCommands["Auto21Down"] = selectedAuto21Down
+    state.selectedCommands["Auto22Down"] = selectedAuto22Down
+    state.selectedCommands["Auto23Up"] = selectedAuto23Up
+    state.selectedCommands["Auto24Up"] = selectedAuto24Up
+    state.selectedCommands["Light"] = selectedLight
+    state.selectedCommands["Purify"] = selectedPurify
+
+	monitorMenu() 
+}
+
 
 // Add device page for TV
 def addTvDeviceTV() {
