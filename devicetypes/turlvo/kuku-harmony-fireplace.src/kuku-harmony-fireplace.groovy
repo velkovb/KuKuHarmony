@@ -31,11 +31,6 @@ metadata {
         command "flame"
         command "timer"
         command "heat"
-
-        command "custom2"
-        command "custom3"
-        command "custom4"
-        command "custom5"
         
         command "virtualOn"
         command "virtualOff"
@@ -77,23 +72,11 @@ metadata {
         valueTile("heat", "device.heat", width: 2, height: 2, decoration: "flat", canChangeIcon: false, canChangeBackground: false) {
             state "yes", label: "HEAT", action: "heat"
         }        
-        valueTile("custom2", "device.custom2", width: 2, height: 2, decoration: "flat", canChangeIcon: false, canChangeBackground: false) {
-            state "yes", label: "custom2", action: "custom2"
-        }        
-        valueTile("custom3", "device.custom3", width: 2, height: 2, decoration: "flat", canChangeIcon: false, canChangeBackground: false) {
-            state "yes", label: "custom3", action: "custom3"
-        }        
-        valueTile("custom4", "device.custom4", width: 2, height: 2, decoration: "flat", canChangeIcon: false, canChangeBackground: false) {
-            state "yes", label: "custom4", action: "custom4"
-        }        
-        valueTile("custom5", "device.custom5", width: 2, height: 2, decoration: "flat", canChangeIcon: false, canChangeBackground: false) {
-            state "yes", label: "custom5", action: "custom5"
-        }
     }
 
 	main(["switch"])
 	details(["power", "colour", "flame", "timer",
-    		"heat", "custom2", "custom3", "custom4", "custom5"])
+    		"heat"])
 }
 
 def installed() {
@@ -137,27 +120,6 @@ def heat() {
     log.debug "child heat()"
     parent.command(this, "heat")
 }
-
-def custom2() {
-    log.debug "child custom2()"
-    parent.command(this, "custom2")
-}
-
-def custom3() {
-    log.debug "child custom3()"
-    parent.command(this, "custom3")
-}
-
-def custom4() {
-    log.debug "child custom4()"
-    parent.command(this, "custom4")
-}
-
-def custom5() {
-    log.debug "child custom5()"
-    parent.command(this, "custom5")
-}
-
 
 def momentaryOnHandler() {
 	log.debug "momentaryOnHandler()"

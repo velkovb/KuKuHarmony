@@ -279,10 +279,6 @@ def addFireplaceDevice() {
         input name: "selectedFlame", type: "enum", title: "Flame", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
         input name: "selectedTimer", type: "enum", title: "Timer", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
         input name: "selectedHeat", type: "enum", title: "Heat", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
-        input name: "custom2", type: "enum", title: "Custom2", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
-        input name: "custom3", type: "enum", title: "Custom3", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
-        input name: "custom4", type: "enum", title: "Custom4", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
-        input name: "custom5", type: "enum", title: "Custom5", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
     }
     //state.selectedCommands["power"] = selectedPower
     state.selectedCommands["power-on"] = selectedPowerOn
@@ -291,10 +287,6 @@ def addFireplaceDevice() {
     state.selectedCommands["flame"] = selectedFlame
     state.selectedCommands["timer"] = selectedTimer
     state.selectedCommands["heat"] = selectedHeat
-    state.selectedCommands["custom2"] = custom2
-    state.selectedCommands["custom3"] = custom3
-    state.selectedCommands["custom4"] = custom4
-    state.selectedCommands["custom5"] = custom5    
 
 	monitorMenu() 
 }
