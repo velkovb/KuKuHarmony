@@ -198,7 +198,7 @@ def mainChildPage() {
                     case "Fan":
                     addFanDevice()
                     case "Fireplace":
-                    addFanDevice()
+                    addFireplaceDevice()
                     break
                     default:
                         log.debug "selectedDeviceType>> default"
@@ -266,8 +266,8 @@ def addFanDevice() {
 	monitorMenu() 
 }
 
-// Add device page for FFireplace an device
-def addFanDevice() {
+// Add device page for Fireplace an device
+def addFireplaceDevice() {
     def labelOfCommand = getLabelsOfCommands(atomicState.deviceCommands)
     state.selectedCommands = [:]  
 
