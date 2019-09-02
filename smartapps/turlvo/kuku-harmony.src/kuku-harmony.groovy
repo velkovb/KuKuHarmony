@@ -173,7 +173,7 @@ def mainChildPage() {
 
             if (selectedDevice) {
                 section("Device Type :") {
-                    def deviceType = ["Default", "Aircon2", "TV", "Roboking", "Fan", "Fireplace", "Aircon"]
+                    def deviceType = ["Default", "Aircon", "TV", "Roboking", "Fan", "Fireplace", "Aircon2"]
                     input name: "selectedDeviceType", type: "enum", title: "Select Device Type", multiple: false, options: deviceType, submitOnChange: true, required: true                    
                 }
             }  
@@ -332,8 +332,8 @@ def addAirconDevice() {
 	monitorMenu() 
 }
 
-// Add device page for Aircon
-def addAirconDevice() {
+// Add device page for Aircon2
+def addAircon2Device() {
     def labelOfCommand = getLabelsOfCommands(atomicState.deviceCommands)
     state.selectedCommands = [:]    
 
