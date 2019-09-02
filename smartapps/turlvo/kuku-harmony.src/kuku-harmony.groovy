@@ -18,7 +18,7 @@
  *
  *  Version history
  */
-def version() {	return "v1.6.501" }
+def version() {	return "v1.6.502" }
 /*
  *	03/28/2017 >>> v1.0.000 - Release first KuKu Harmony supports only on/off command for each device
  *  04/13/2017 >>> v1.3.000 - Added Aircon, Fan, Roboking device type
@@ -37,6 +37,7 @@ def version() {	return "v1.6.501" }
  *  09/04/2017 >>> v1.6.002 - hot fix - 'Power Meter' subscription is not called In the case of other devices except the air conditioner
  *  09/18/2017 >>> v1.6.500 - added Contact Sensor's monitoring mode and changed version expression
  *  09/18/2017 >>> v1.6.501 - added 'Number 0' command at TV Type DTH
+ *  09/18/2017 >>> v1.6.502 - added my custom types for fireplace and my AC
 */
 
 definition(
@@ -172,7 +173,7 @@ def mainChildPage() {
 
             if (selectedDevice) {
                 section("Device Type :") {
-                    def deviceType = ["Default", "Aircon", "TV", "Roboking", "Fan"]
+                    def deviceType = ["Default", "Aircon", "TV", "Roboking", "Fan", "Fireplace"]
                     input name: "selectedDeviceType", type: "enum", title: "Select Device Type", multiple: false, options: deviceType, submitOnChange: true, required: true                    
                 }
             }  
@@ -195,6 +196,8 @@ def mainChildPage() {
                     addRobokingDevice()
                     break
                     case "Fan":
+                    addFanDevice()
+                    case "Fireplace":
                     addFanDevice()
                     break
                     default:
@@ -255,6 +258,39 @@ def addFanDevice() {
     state.selectedCommands["swing"] = selectedSwing
     state.selectedCommands["timer"] = selectedTimer
     state.selectedCommands["custom1"] = custom1
+    state.selectedCommands["custom2"] = custom2
+    state.selectedCommands["custom3"] = custom3
+    state.selectedCommands["custom4"] = custom4
+    state.selectedCommands["custom5"] = custom5    
+
+	monitorMenu() 
+}
+
+// Add device page for FFireplace an device
+def addFanDevice() {
+    def labelOfCommand = getLabelsOfCommands(atomicState.deviceCommands)
+    state.selectedCommands = [:]  
+
+    section("Commands :") {            
+        // input name: "selectedPower", type: "enum", title: "Power Toggle", options: labelOfCommand, submitOnChange: true, multiple: false, required: true
+        input name: "selectedPowerOn", type: "enum", title: "Power On", options: labelOfCommand, submitOnChange: true, multiple: false, required: true
+        input name: "selectedPowerOff", type: "enum", title: "Power Off", options: labelOfCommand, submitOnChange: true, multiple: false, required: true
+        input name: "selectedColour", type: "enum", title: "Colour", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
+        input name: "selectedFlame", type: "enum", title: "Flame", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
+        input name: "selectedTimer", type: "enum", title: "Timer", options: labelOfCommand, submitOnChange: true, multiple: false, required: false
+        input name: "selectedHeat", type: "enum", title: "Heat", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+        input name: "custom2", type: "enum", title: "Custom2", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+        input name: "custom3", type: "enum", title: "Custom3", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+        input name: "custom4", type: "enum", title: "Custom4", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+        input name: "custom5", type: "enum", title: "Custom5", options: labelOfCommand, submitOnChange: true, multiple: false, required: false  
+    }
+    //state.selectedCommands["power"] = selectedPower
+    state.selectedCommands["power-on"] = selectedPowerOn
+    state.selectedCommands["power-off"] = selectedPowerOff    
+    state.selectedCommands["colour"] = selectedColour
+    state.selectedCommands["flame"] = selectedFlame
+    state.selectedCommands["timer"] = selectedTimer
+    state.selectedCommands["heat"] = selectedHeat
     state.selectedCommands["custom2"] = custom2
     state.selectedCommands["custom3"] = custom3
     state.selectedCommands["custom4"] = custom4
